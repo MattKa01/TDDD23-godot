@@ -19,10 +19,10 @@ func _process(delta: float) -> void:
 	pass
 
 func _handle_enemyattack(damage):
-	pass
+	print("enemy attack")
+	player.take_damage(damage)
 
 func _handle_playerattack(body, damage):
-	print("freg", body, damage)
 	for scene in enemies:
 		if scene == body:
 			scene.take_damage(damage)

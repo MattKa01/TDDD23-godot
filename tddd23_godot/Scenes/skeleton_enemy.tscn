@@ -543,7 +543,20 @@ position = Vector2(20, -14)
 shape = SubResource("RectangleShape2D_821dp")
 
 [node name="attack_cooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="attack_delay" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="attack_duration" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]
 [connection signal="body_entered" from="attack_hitbox" to="." method="_on_attack_hitbox_body_entered"]
+[connection signal="body_exited" from="attack_hitbox" to="." method="_on_attack_hitbox_body_exited"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="attack_delay" to="." method="_on_attack_delay_timeout"]
+[connection signal="timeout" from="attack_duration" to="." method="_on_attack_duration_timeout"]

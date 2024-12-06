@@ -84,6 +84,11 @@ func should_move(delta: float, direction: int) -> void:
 		hitbox.position.x = -40
 	if velocity.y == 0 and dash_velocity == 0:
 		_animated_sprite.play("run")
+		
+
+func take_damage(damage):
+	health -= damage
+	print(health)
 
 func _on_DashCooldown_timeout():
 	can_dash = true
@@ -91,12 +96,10 @@ func _on_DashCooldown_timeout():
 
 
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:
-	print(body) # Replace with function body.
 	attackable_enemy = body
 
 
 func _on_attack_hitbox_body_exited(body: Node2D) -> void:
-	print("frog")
 	attackable_enemy = null
 
 

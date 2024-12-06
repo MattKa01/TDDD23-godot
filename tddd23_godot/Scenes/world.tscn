@@ -1,0 +1,299 @@
+[gd_scene load_steps=23 format=4 uid="uid://da7so1phpidfj"]
+
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_bxu3o"]
+[ext_resource type="PackedScene" uid="uid://doq5kvqsi6vuj" path="res://Scenes/player.tscn" id="1_ljai0"]
+[ext_resource type="Texture2D" uid="uid://b75ab7ux3lnml" path="res://Assets/Old/Tiles/shop_anim.png" id="2_b6c4m"]
+[ext_resource type="Texture2D" uid="uid://ce3ma16v4y0eq" path="res://Assets/Old/Tiles/oak_woods_tileset.png" id="2_o2q77"]
+[ext_resource type="Texture2D" uid="uid://ccx3wpyfxqmhd" path="res://Assets/Old/Tiles/fence_1.png" id="3_fmdjv"]
+[ext_resource type="Texture2D" uid="uid://bxveskafw7hf0" path="res://Assets/Old/Tiles/lamp.png" id="4_0os8k"]
+[ext_resource type="Texture2D" uid="uid://fml5g05n5te2" path="res://Assets/Maps/Autumn Forest 2D Pixel Art/Background/3.png" id="4_1jdav"]
+[ext_resource type="Texture2D" uid="uid://cn67kyas3632x" path="res://Assets/Maps/Autumn Forest 2D Pixel Art/Background/2.png" id="5_oh725"]
+[ext_resource type="Texture2D" uid="uid://bnbdu5vao5sf3" path="res://Assets/Maps/Autumn Forest 2D Pixel Art/Background/1.png" id="6_4anna"]
+[ext_resource type="PackedScene" uid="uid://f0smpcbkhmhc" path="res://Scenes/skeleton_enemy.tscn" id="8_wjrwc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1spwk"]
+atlas = ExtResource("2_b6c4m")
+region = Rect2(0, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxxra"]
+atlas = ExtResource("2_b6c4m")
+region = Rect2(118, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkol3"]
+atlas = ExtResource("2_b6c4m")
+region = Rect2(236, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ex7yc"]
+atlas = ExtResource("2_b6c4m")
+region = Rect2(354, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3ogc"]
+atlas = ExtResource("2_b6c4m")
+region = Rect2(472, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1l3q"]
+atlas = ExtResource("2_b6c4m")
+region = Rect2(590, 0, 118, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o1urt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1spwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxxra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkol3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ex7yc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3ogc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1l3q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wu6bf"]
+size = Vector2(1036, 84.5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qm8vr"]
+texture = ExtResource("2_o2q77")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+3:1/0 = 0
+3:2/0 = 0
+3:3/0 = 0
+2:3/0 = 0
+1:3/0 = 0
+0:3/0 = 0
+0:2/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+6:2/0 = 0
+5:3/0 = 0
+7:3/0 = 0
+6:4/0 = 0
+6:5/0 = 0
+9:3/0 = 0
+10:2/0 = 0
+11:3/0 = 0
+10:4/0 = 0
+10:0/0 = 0
+12:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+17:0/0 = 0
+17:1/0 = 0
+17:2/0 = 0
+17:3/0 = 0
+16:3/0 = 0
+15:3/0 = 0
+14:3/0 = 0
+14:2/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+19:0/0 = 0
+20:0/0 = 0
+20:1/0 = 0
+19:1/0 = 0
+19:2/0 = 0
+20:2/0 = 0
+18:5/0 = 0
+19:5/0 = 0
+19:6/0 = 0
+19:7/0 = 0
+19:8/0 = 0
+19:9/0 = 0
+19:10/0 = 0
+19:11/0 = 0
+18:11/0 = 0
+18:10/0 = 0
+18:9/0 = 0
+18:8/0 = 0
+18:7/0 = 0
+18:6/0 = 0
+18:12/0 = 0
+18:13/0 = 0
+19:13/0 = 0
+20:13/0 = 0
+20:14/0 = 0
+19:14/0 = 0
+18:14/0 = 0
+17:13/0 = 0
+16:13/0 = 0
+14:13/0 = 0
+13:13/0 = 0
+12:13/0 = 0
+11:13/0 = 0
+10:13/0 = 0
+9:13/0 = 0
+8:13/0 = 0
+7:13/0 = 0
+6:13/0 = 0
+5:13/0 = 0
+5:14/0 = 0
+6:14/0 = 0
+7:14/0 = 0
+8:14/0 = 0
+9:14/0 = 0
+10:14/0 = 0
+11:14/0 = 0
+12:14/0 = 0
+15:11/0 = 0
+15:10/0 = 0
+15:8/0 = 0
+16:8/0 = 0
+15:6/0 = 0
+15:5/0 = 0
+13:6/0 = 0
+12:6/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+13:10/0 = 0
+12:10/0 = 0
+10:6/0 = 0
+10:7/0 = 0
+10:8/0 = 0
+10:9/0 = 0
+10:10/0 = 0
+9:10/0 = 0
+9:9/0 = 0
+9:8/0 = 0
+9:7/0 = 0
+9:6/0 = 0
+7:7/0 = 0
+6:7/0 = 0
+5:7/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+7:11/0 = 0
+6:11/0 = 0
+5:11/0 = 0
+3:6/0 = 0
+3:5/0 = 0
+2:5/0 = 0
+1:5/0 = 0
+0:5/0 = 0
+0:6/0 = 0
+3:8/0 = 0
+3:7/0 = 0
+2:7/0 = 0
+1:7/0 = 0
+0:7/0 = 0
+0:8/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+0:11/0 = 0
+0:12/0 = 0
+0:13/0 = 0
+1:12/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+3:13/0 = 0
+0:14/0 = 0
+1:14/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dothj"]
+texture = ExtResource("3_fmdjv")
+texture_region_size = Vector2i(73, 19)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dx12p"]
+texture = ExtResource("4_0os8k")
+texture_region_size = Vector2i(23, 57)
+0:0/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7ihci"]
+tile_size = Vector2i(24, 24)
+sources/0 = SubResource("TileSetAtlasSource_qm8vr")
+sources/1 = SubResource("TileSetAtlasSource_dothj")
+sources/2 = SubResource("TileSetAtlasSource_dx12p")
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_bxu3o")
+
+[node name="Shop" type="AnimatedSprite2D" parent="."]
+position = Vector2(591.341, 255)
+scale = Vector2(3.10747, 3.57641)
+sprite_frames = SubResource("SpriteFrames_o1urt")
+frame_progress = 0.726777
+
+[node name="Platform" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(531.5, 522.5)
+shape = SubResource("RectangleShape2D_wu6bf")
+
+[node name="Platform2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
+position = Vector2(1599, 421.25)
+shape = SubResource("RectangleShape2D_wu6bf")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAVAAoAAAAIAAAAAAAUAAoAAAAGAAAAAAATAAoAAAAHAAAAAAASAAoAAAAGAAAAAAARAAoAAAAHAAAAAAAQAAoAAAAGAAAAAAAPAAoAAAAHAAAAAAAOAAoAAAAHAAAAAAANAAoAAAAHAAAAAAAMAAoAAAAHAAAAAAALAAoAAAAGAAAAAAAKAAoAAAAGAAAAAAAJAAoAAAAHAAAAAAAIAAoAAAAHAAAAAAAHAAoAAAAHAAAAAAAGAAoAAAAHAAAAAAAFAAoAAAAHAAAAAAAEAAoAAAAGAAAAAAADAAoAAAAHAAAAAAACAAoAAAAGAAAAAAABAAoAAAAHAAAAAAAAAAoAAAAFAAAAAAAYAAgAAAACAAAAAAAZAAgAAAABAAAAAAAaAAgAAAABAAAAAAAbAAgAAAACAAAAAAAcAAgAAAABAAAAAAAdAAgAAAACAAAAAAAeAAgAAAACAAAAAAAfAAgAAAACAAAAAAAgAAgAAAABAAAAAAAhAAgAAAACAAAAAAAiAAgAAAABAAAAAAAkAAgAAAACAAAAAAAlAAgAAAACAAAAAAAmAAgAAAABAAAAAAAnAAgAAAACAAAAAAAoAAgAAAABAAAAAAApAAgAAAACAAAAAAAqAAgAAAACAAAAAAArAAgAAAADAAAAAAAjAAgAAAABAAAAAAAWAAgAAAAAAAAAAAAXAAgAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_7ihci")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(1000, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(532, 320)
+scale = Vector2(3.94375, 4.53889)
+texture = ExtResource("4_1jdav")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1000, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(764, 309)
+scale = Vector2(4.4875, 4.53056)
+texture = ExtResource("5_oh725")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(1217, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(705, 301)
+scale = Vector2(5.125, 4.79444)
+texture = ExtResource("6_4anna")
+
+[node name="Skeleton_enemy" parent="." instance=ExtResource("8_wjrwc")]
+position = Vector2(1330, 375)
+scale = Vector2(3, 3)
+
+[node name="Player" parent="." instance=ExtResource("1_ljai0")]
+position = Vector2(606, 482)

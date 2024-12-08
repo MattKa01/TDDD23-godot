@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var collision = $CollisionPolygon2D
 @onready var attack_cooldown = $attack_cooldown
 @onready var attack_duration = $attack_duration
+@onready var attack_hitbox = $attack_hitbox/CollisionShape2D
 const SPEED = 70.0
 var player_chase = false
 var player = null
@@ -24,7 +25,7 @@ func _physics_process(delta: float) -> void:
 		if not is_on_floor():
 			velocity += get_gravity() * delta
 		if player_chase:
-			if abs(player.position.x - position.x) < 60:
+			if abs(player.position.x - position.x) < 65:
 				player_close = true
 				attack_player()
 				if not _animated_sprite.is_playing():
@@ -33,8 +34,10 @@ func _physics_process(delta: float) -> void:
 				player_close = false
 			if position.x < player.position.x:
 				_animated_sprite.flip_h = false
+				attack_hitbox.position.x = 20
 			else:
 				_animated_sprite.flip_h = true
+				attack_hitbox.position.x = -20
 			if not player_close:
 				position += (player.position - position)/SPEED
 				if not (_animated_sprite.animation == "attack1" and _animated_sprite.is_playing()):

@@ -77,6 +77,14 @@ region = Rect2(384, 0, 96, 96)
 atlas = ExtResource("5_raiw7")
 region = Rect2(0, 0, 96, 96)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e863u"]
+atlas = ExtResource("5_raiw7")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giwlv"]
+atlas = ExtResource("5_raiw7")
+region = Rect2(480, 0, 96, 96)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_xvlrp"]
 atlas = ExtResource("5_raiw7")
 region = Rect2(96, 0, 96, 96)
@@ -88,14 +96,6 @@ region = Rect2(192, 0, 96, 96)
 [sub_resource type="AtlasTexture" id="AtlasTexture_80ff7"]
 atlas = ExtResource("5_raiw7")
 region = Rect2(288, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e863u"]
-atlas = ExtResource("5_raiw7")
-region = Rect2(384, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_giwlv"]
-atlas = ExtResource("5_raiw7")
-region = Rect2(480, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s0sgn"]
 atlas = ExtResource("3_h5b37")
@@ -349,6 +349,9 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_6i0vj")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_vefta")
 }, {
 "duration": 1.0,
@@ -372,6 +375,20 @@ animations = [{
 "texture": SubResource("AtlasTexture_ppvkd")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_e863u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giwlv")
+}],
+"loop": true,
+"name": &"block",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppvkd")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_xvlrp")
 }, {
 "duration": 1.0,
@@ -387,7 +404,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_giwlv")
 }],
 "loop": false,
-"name": &"block",
+"name": &"block_hit",
 "speed": 15.0
 }, {
 "frames": [{
@@ -601,7 +618,7 @@ position_smoothing_enabled = true
 position = Vector2(-4, -105)
 scale = Vector2(3.16875, 3.16875)
 sprite_frames = SubResource("SpriteFrames_xa5u0")
-animation = &"attack1"
+animation = &"attack3"
 
 [node name="DashCooldown" type="Timer" parent="."]
 wait_time = 3.0

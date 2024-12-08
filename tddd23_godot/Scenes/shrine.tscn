@@ -1,0 +1,112 @@
+[gd_scene load_steps=11 format=3 uid="uid://d18hcuu6aal8y"]
+
+[ext_resource type="Script" path="res://Scripts/shrine.gd" id="1_hmd5f"]
+[ext_resource type="Texture2D" uid="uid://d2klf26oxuvj2" path="res://Assets/Maps/Autumn Forest 2D Pixel Art/Props/well.png" id="2_a7ft8"]
+[ext_resource type="Texture2D" uid="uid://b0ci0rh301vrk" path="res://Assets/items/PNG/Transperent/Icon41.png" id="3_hynrj"]
+[ext_resource type="Texture2D" uid="uid://spt81cqdo8eg" path="res://Assets/items/PNG/Transperent/Icon40.png" id="4_fxpue"]
+[ext_resource type="Texture2D" uid="uid://dj004i78xps3u" path="res://Assets/items/PNG/Transperent/Icon17.png" id="5_8si4t"]
+[ext_resource type="Texture2D" uid="uid://n8eklt8s2dnj" path="res://Assets/items/PNG/Transperent/Icon38.png" id="6_pj7v7"]
+[ext_resource type="Texture2D" uid="uid://c22pkdifx5tgl" path="res://Assets/items/PNG/Transperent/Icon16.png" id="7_x8qev"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18eiw"]
+size = Vector2(47, 35)
+
+[sub_resource type="LabelSettings" id="LabelSettings_llvbl"]
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_tmr0x"]
+font_size = 10
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_hmd5f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -48)
+scale = Vector2(0.995536, 1)
+texture = ExtResource("2_a7ft8")
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(1.5, -17.5)
+shape = SubResource("RectangleShape2D_18eiw")
+
+[node name="Bonus_attack_item" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-182, -66)
+texture = ExtResource("3_hynrj")
+
+[node name="Label" type="Label" parent="Bonus_attack_item"]
+offset_left = -43.0
+offset_top = -47.0
+offset_right = 49.0
+offset_bottom = -16.0
+text = "Add one additional 
+attack to chain"
+label_settings = SubResource("LabelSettings_llvbl")
+horizontal_alignment = 1
+
+[node name="Bonus_damage_item" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(64, -161)
+texture = ExtResource("4_fxpue")
+
+[node name="Label" type="Label" parent="Bonus_damage_item"]
+offset_left = -41.0
+offset_top = -45.0
+offset_right = 42.0
+offset_bottom = -14.0
+text = "Increase damage
+dealt"
+label_settings = SubResource("LabelSettings_tmr0x")
+horizontal_alignment = 1
+
+[node name="Bonus_health_item" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-173, -155)
+texture = ExtResource("5_8si4t")
+
+[node name="Label" type="Label" parent="Bonus_health_item"]
+offset_left = -41.0
+offset_top = -45.0
+offset_right = 42.0
+offset_bottom = -14.0
+text = "Increase your
+health"
+label_settings = SubResource("LabelSettings_tmr0x")
+horizontal_alignment = 1
+
+[node name="Block_item" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(129, -55)
+texture = ExtResource("6_pj7v7")
+
+[node name="Label" type="Label" parent="Block_item"]
+offset_left = -41.0
+offset_top = -45.0
+offset_right = 42.0
+offset_bottom = -14.0
+text = "Unlock SHIFT
+to block"
+label_settings = SubResource("LabelSettings_tmr0x")
+horizontal_alignment = 1
+
+[node name="More_dash_item" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-64, -159)
+texture = ExtResource("7_x8qev")
+
+[node name="Label" type="Label" parent="More_dash_item"]
+offset_left = -41.0
+offset_top = -45.0
+offset_right = 42.0
+offset_bottom = -14.0
+text = "Decrease dash
+cooldown"
+label_settings = SubResource("LabelSettings_tmr0x")
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]

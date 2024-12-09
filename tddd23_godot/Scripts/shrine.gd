@@ -24,6 +24,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and player_in and not used:
 		choices = show_items()
+		$"1".visible = true
+		$"2".visible = true
 	
 	if not disabled:
 		if Input.is_action_just_pressed("choose_item_1") and player_in: #and used: #debug remove used
@@ -31,12 +33,17 @@ func _process(delta: float) -> void:
 			for item in items:
 				items[item][0].visible = false
 			disabled = true
+			$"1".visible = false
+			$"2".visible = false
 	
 		elif Input.is_action_just_pressed("choose_item_2") and player_in: #and used: #debug remove used
 			choose_item.emit(choices[1])
 			for item in items:
 				items[item][0].visible = false
 			disabled = true
+			$"1".visible = false
+			$"2".visible = false
+
 
 func show_items():
 	#debug below
@@ -56,13 +63,16 @@ func show_items():
 	choice2[0].visible = true
 	
 	#comment out for debug
-	#used = true
+	used = true
 	
 	return [choice1, choice2]
 
 func _on_player_detection_body_entered(body: Node2D) -> void:
 	player_in = true
+	if not used:
+		$Instructions.visible = true
 
 
 func _on_player_detection_body_exited(body: Node2D) -> void:
 	player_in = false
+	$Instructions.visible = false

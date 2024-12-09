@@ -12,6 +12,7 @@ var dash_velocity = 0.0
 var can_dash = true
 var attackable_enemy = null
 var health = 100
+var max_health = 100
 var damage = 50
 var can_attack = true
 var collected_items = []
@@ -20,45 +21,57 @@ var unlocked_block = false
 var attack_chain_counter = 1
 var dcd = 3
 var blocking = false
+var alive = true
 
 signal attack(damage, body)
+signal player_dead()
+
+func _ready() -> void:
+	health = PlayerData.health
+	damage = PlayerData.damage
+	collected_items = PlayerData.collected_items
+	unlocked_additional_attack = PlayerData.unlocked_additional_attack
+	unlocked_block = PlayerData.unlocked_block
+	print(health)
+	max_health = PlayerData.max_health
 
 func _physics_process(delta: float) -> void:
-	if velocity.x == 0 and velocity.y == 0 and not is_attacking() and not blocking:
-		_animated_sprite.play("idle")
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * 1.5 * delta
+	if alive:
+		if velocity.x == 0 and velocity.y == 0 and not is_attacking() and not blocking:
+			_animated_sprite.play("idle")
+		# Add the gravity.
+		if not is_on_floor():
+			velocity += get_gravity() * 1.5 * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		should_jump(delta)
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			should_jump(delta)
 
-	if Input.is_action_just_pressed("attack_light") and velocity.x == 0 and velocity.y == 0 and not blocking:
-		if attack_chain_counter == 1:
-			should_attack(delta)
-		elif attack_chain_counter == 2 and not (_animated_sprite.is_playing() and _animated_sprite.animation == "attack1"):
-			attack_chain(attack_chain_counter)
-		elif attack_chain_counter == 3 and not (_animated_sprite.is_playing() and _animated_sprite.animation == "attack2"):
-			attack_chain(attack_chain_counter)
+		if Input.is_action_just_pressed("attack_light") and velocity.x == 0 and velocity.y == 0 and not blocking:
+			if attack_chain_counter == 1:
+				should_attack(delta)
+			elif attack_chain_counter == 2 and not (_animated_sprite.is_playing() and _animated_sprite.animation == "attack1"):
+				attack_chain(attack_chain_counter)
+			elif attack_chain_counter == 3 and not (_animated_sprite.is_playing() and _animated_sprite.animation == "attack2"):
+				attack_chain(attack_chain_counter)
 
-	if Input.is_action_pressed("block") and velocity.x == 0 and velocity.y == 0 and not is_attacking():
-		should_block(delta)
-	else:
-		blocking = false
+		if Input.is_action_pressed("block") and velocity.x == 0 and velocity.y == 0 and not is_attacking():
+			should_block(delta)
+		else:
+			blocking = false
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	if not is_attacking():
-		var direction := Input.get_axis("move_left", "move_right")
-		if Input.is_action_just_pressed("dash"):
-			should_dash(delta, direction)
+		if not is_attacking():
+			var direction := Input.get_axis("move_left", "move_right")
+			if Input.is_action_just_pressed("dash"):
+				should_dash(delta, direction)
 		
-		if direction:
-			should_move(delta, direction)
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+			if direction:
+				should_move(delta, direction)
+			else:
+				velocity.x = move_toward(velocity.x, 0, SPEED)
 	
-	move_and_slide()
+		move_and_slide()
 
 func is_attacking():
 	return (_animated_sprite.is_playing() and _animated_sprite.animation == "attack1") or (_animated_sprite.is_playing() and _animated_sprite.animation == "attack2") or (_animated_sprite.is_playing() and _animated_sprite.animation == "attack3")
@@ -136,6 +149,11 @@ func take_damage(damage):
 	else:
 		health -= damage
 	print(health)
+	
+	if health <= 0:
+		alive = false
+		_animated_sprite.play("death")
+		$Dying.start(2)
 
 func new_item(item):
 	var id = item[2]
@@ -149,6 +167,7 @@ func new_item(item):
 			damage += 25
 		3:
 			health += 50
+			max_health += 50
 		5:
 			unlocked_block = true
 		4:	
@@ -173,3 +192,7 @@ func _on_attack_hitbox_body_exited(body: Node2D) -> void:
 
 func _on_attack_cooldown_timeout() -> void:
 	can_attack = true # Replace with function body.
+
+
+func _on_dying_timeout() -> void:
+	player_dead.emit()

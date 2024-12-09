@@ -820,6 +820,39 @@ animations = [{
 "texture": SubResource("AtlasTexture_7owbb")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7owbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7owbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7owbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7owbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7owbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7owbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7owbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7owbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7owbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7owbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7owbb")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_v8qwc")
 }, {
 "duration": 1.0,
@@ -943,7 +976,7 @@ animations = [{
 size = Vector2(21, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_elxtc"]
-size = Vector2(706, 143.5)
+size = Vector2(604, 143.5)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 5
@@ -957,7 +990,7 @@ shape = SubResource("RectangleShape2D_pmsh1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -42)
 sprite_frames = SubResource("SpriteFrames_fqyw3")
-animation = &"dead"
+animation = &"level up"
 
 [node name="attack_hitbox" type="Area2D" parent="."]
 collision_layer = 0

@@ -634,8 +634,12 @@ shape = SubResource("RectangleShape2D_418q3")
 
 [node name="AttackCooldown" type="Timer" parent="."]
 
+[node name="Dying" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="attack" from="." to="." method="_on_attack"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_DashCooldown_timeout"]
 [connection signal="body_entered" from="Attack_hitbox" to="." method="_on_attack_hitbox_body_entered"]
 [connection signal="body_exited" from="Attack_hitbox" to="." method="_on_attack_hitbox_body_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="Dying" to="." method="_on_dying_timeout"]

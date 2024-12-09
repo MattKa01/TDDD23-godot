@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 		if not is_on_floor():
 			velocity += get_gravity() * delta
 		if player_chase:
-			if abs(player.position.x - position.x) < 120:
+			if abs(player.position.x - position.x) < 120 and player_attackable:
 				player_close = true
 				attack_player()
 				if not _animated_sprite.is_playing():
@@ -79,7 +79,8 @@ func attack_player():
 		attack_cooldown.start(1)
 	
 func take_damage(damage):
-	health = health - damage
+	if not_leveling:
+		health = health - damage
 	if health <= 0:
 		_animated_sprite.play("death")
 		alive = false
@@ -87,7 +88,7 @@ func take_damage(damage):
 		flame_phase = true
 		_animated_sprite.play("level up")
 		not_leveling = false
-		leveling_duration.start(2)
+		leveling_duration.start(3)
 
 
 func _on_attack_cooldown_timeout() -> void:
@@ -99,17 +100,18 @@ func _on_attack_duration_timeout() -> void:
 
 
 func _on_attack_delay_timeout() -> void:
-	if flame_phase:
-		_animated_sprite.play(flame_attacks[randi_range(0,3)])
-		if player_attackable:
-			boss_attack.emit(200)
-		attack_duration.start(0.6)
-	else:
-		_animated_sprite.play("attack" + str(randi_range(1,2)))
-		if player_attackable:
-			boss_attack.emit(100)
-		attack_duration.start(1)
-
+	if alive and not_leveling:
+		if flame_phase:
+			_animated_sprite.play(flame_attacks[randi_range(0,3)])
+			if player_attackable:
+				boss_attack.emit(200)
+			attack_duration.start(0.6)
+		else:
+			_animated_sprite.play("attack" + str(randi_range(1,2)))
+			if player_attackable:
+				boss_attack.emit(100)
+			attack_duration.start(1)
+	print(player_attackable)
 
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 	player_attackable = true # Replace with function body.
@@ -126,3 +128,6 @@ func _on_detection_body_entered(body: Node2D) -> void:
 
 func _on_level_up_duration_timeout() -> void:
 	not_leveling = true
+
+func is_boss():
+	return true

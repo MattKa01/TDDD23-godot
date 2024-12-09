@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 		if not is_on_floor():
 			velocity += get_gravity() * delta
 		if player_chase:
-			if abs(player.position.x - position.x) < 65:
+			if abs(player.position.x - position.x) < 65 and player_attackable:
 				player_close = true
 				attack_player()
 				if not _animated_sprite.is_playing():
@@ -87,10 +87,11 @@ func _on_attack_cooldown_timeout() -> void:
 	can_attack = true
 
 func _on_attack_delay_timeout() -> void:
-	_animated_sprite.play("attack1")
-	if player_attackable:
-		enemy_attack.emit(100)
-	attack_duration.start(1)
+	if alive:
+		_animated_sprite.play("attack1")
+		if player_attackable:
+			enemy_attack.emit(100)
+		attack_duration.start(1)
 
 
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:
@@ -103,3 +104,6 @@ func _on_attack_hitbox_body_exited(body: Node2D) -> void:
 
 func _on_attack_duration_timeout() -> void:
 	not_attacking = true
+
+func is_enemy():
+	return false

@@ -1,0 +1,150 @@
+[gd_scene load_steps=20 format=3 uid="uid://bbjciwyc4vdyf"]
+
+[ext_resource type="Texture2D" uid="uid://fml5g05n5te2" path="res://Assets/Maps/Autumn Forest 2D Pixel Art/Background/3.png" id="1_ecs1o"]
+[ext_resource type="Script" path="res://Scripts/story.gd" id="1_pm8i4"]
+[ext_resource type="Texture2D" uid="uid://dmowspair0n4f" path="res://Assets/Maps/Autumn Forest 2D Pixel Art/Background/0.png" id="2_ouxa6"]
+[ext_resource type="Texture2D" uid="uid://bpvq5kdsb75jb" path="res://Assets/Characters/FULL_Samurai 2D Pixel Art v1.1/Sprites/IDLE.png" id="3_fnb7x"]
+[ext_resource type="Texture2D" uid="uid://cg6lqse8lanku" path="res://Assets/Characters/Wolf Samurai 2D Pixel Art v1.1/Sprites/without_outline/IDLE.png" id="4_lklv8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kr72"]
+atlas = ExtResource("3_fnb7x")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdppv"]
+atlas = ExtResource("3_fnb7x")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv20d"]
+atlas = ExtResource("3_fnb7x")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v6cm"]
+atlas = ExtResource("3_fnb7x")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k4sg"]
+atlas = ExtResource("3_fnb7x")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f76an"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kr72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdppv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv20d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1v6cm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k4sg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nfto"]
+atlas = ExtResource("4_lklv8")
+region = Rect2(0, 0, 192, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uic7t"]
+atlas = ExtResource("4_lklv8")
+region = Rect2(192, 0, 192, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m3mi"]
+atlas = ExtResource("4_lklv8")
+region = Rect2(384, 0, 192, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpexl"]
+atlas = ExtResource("4_lklv8")
+region = Rect2(576, 0, 192, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3o4u"]
+atlas = ExtResource("4_lklv8")
+region = Rect2(768, 0, 192, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qieeg"]
+atlas = ExtResource("4_lklv8")
+region = Rect2(960, 0, 192, 58)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pael2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nfto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uic7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m3mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpexl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3o4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qieeg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t10cw"]
+font_size = 30
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_pm8i4")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1039.0
+texture = ExtResource("1_ecs1o")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -2.0
+offset_top = 740.0
+offset_right = 1932.0
+offset_bottom = 1082.0
+texture = ExtResource("2_ouxa6")
+
+[node name="player" type="AnimatedSprite2D" parent="."]
+position = Vector2(565, 514)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_f76an")
+
+[node name="Friend" type="AnimatedSprite2D" parent="."]
+position = Vector2(1298, 604)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_pael2")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 29.0
+offset_top = 762.0
+offset_right = 1902.0
+offset_bottom = 1068.0
+text = "Your village has recently come under attack by order of the new shogun, 
+now you as a masterless ronin must make a decision. 
+Will you save your loyal friend or defeat the shoguns minions to save the village. Maybe there is time for both?
+ Just remember, death may not be the end!"
+label_settings = SubResource("LabelSettings_t10cw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1657.0
+offset_top = 981.0
+offset_right = 1890.0
+offset_bottom = 1053.0
+text = "NEXT"
+
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

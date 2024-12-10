@@ -79,6 +79,7 @@ func is_attacking():
 func should_jump(delta: float) -> void:
 	velocity.y = JUMP_VELOCITY
 	_animated_sprite.play("jump")
+	$Jump_sound.play()
 
 func should_block(delta):
 	if not unlocked_block:
@@ -103,6 +104,7 @@ func should_attack(delta: float) -> void:
 	if attackable_enemy != null and can_attack:
 		attack.emit(attackable_enemy, damage)
 		_animated_sprite.play("attack1")
+		$Attack_sound.play()
 		print("attack1")
 		attack_chain_counter += 1
 		if unlocked_additional_attack == 1:
@@ -115,6 +117,7 @@ func attack_chain(chain_nr):
 		if chain_nr == 2:
 			attack.emit(attackable_enemy, damage)
 			_animated_sprite.play("attack2")
+			$Attack_sound.play()
 			print("attack2")
 			attack_chain_counter += 1
 			if unlocked_additional_attack == 2:
@@ -123,6 +126,7 @@ func attack_chain(chain_nr):
 				attack_chain_counter = 1
 		elif chain_nr == 3:
 			_animated_sprite.play("attack3")
+			$Attack_sound.play()
 			print("attack3")
 			attack.emit(attackable_enemy, damage)
 			can_attack = false
@@ -140,11 +144,14 @@ func should_move(delta: float, direction: int) -> void:
 		hitbox.position.x = -40
 	if velocity.y == 0 and dash_velocity == 0:
 		_animated_sprite.play("run")
+		if not $Run_sound.playing:
+			$Run_sound.play()
 		
 
 func take_damage(damage):
 	if blocking:
 		_animated_sprite.play("block_hit")
+		$block_sound.play()
 		health -= damage/2
 	else:
 		health -= damage
@@ -152,6 +159,7 @@ func take_damage(damage):
 	
 	if health <= 0:
 		alive = false
+		PlayerData.add_death()
 		_animated_sprite.play("death")
 		$Dying.start(2)
 

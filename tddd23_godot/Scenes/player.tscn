@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://doq5kvqsi6vuj"]
+[gd_scene load_steps=103 format=3 uid="uid://doq5kvqsi6vuj"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_l3am4"]
 [ext_resource type="Texture2D" uid="uid://dwt5ah1g5ukub" path="res://Assets/Characters/FULL_Samurai 2D Pixel Art v1.1/Sprites/ATTACK 1.png" id="2_2hbv4"]
@@ -12,6 +12,18 @@
 [ext_resource type="Texture2D" uid="uid://cmh5qascde8tb" path="res://Assets/Characters/FULL_Samurai 2D Pixel Art v1.1/Sprites/HURT.png" id="7_k7oya"]
 [ext_resource type="Texture2D" uid="uid://yntrlrmakk2w" path="res://Assets/Characters/FULL_Samurai 2D Pixel Art v1.1/Sprites/DEATH.png" id="7_lk64u"]
 [ext_resource type="Texture2D" uid="uid://cqqo5lbc50ruq" path="res://Assets/Characters/FULL_Samurai 2D Pixel Art v1.1/Sprites/SPECIAL ATTACK.png" id="11_ntcit"]
+[ext_resource type="AudioStream" uid="uid://b2f1wppweh06x" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Impact Hit 2.wav" id="13_bmyrb"]
+[ext_resource type="AudioStream" uid="uid://dlb0wf1b3x6wq" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Impact Hit 1.wav" id="13_esv4c"]
+[ext_resource type="AudioStream" uid="uid://be3gavom4yinp" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Impact Hit 3.wav" id="15_idmwb"]
+[ext_resource type="AudioStream" uid="uid://bcv5pe2ok2do1" path="res://Assets/Sounds/WAV Files/SFX/Footsteps/Dirt/Dirt Walk 1.wav" id="16_t6bos"]
+[ext_resource type="AudioStream" uid="uid://1y2p58lslhjb" path="res://Assets/Sounds/WAV Files/SFX/Footsteps/Dirt/Dirt Walk 2.wav" id="17_46wwg"]
+[ext_resource type="AudioStream" uid="uid://cl0bxydxrstws" path="res://Assets/Sounds/WAV Files/SFX/Footsteps/Dirt/Dirt Walk 3.wav" id="18_k70iq"]
+[ext_resource type="AudioStream" uid="uid://c3d1i530ganav" path="res://Assets/Sounds/WAV Files/SFX/Footsteps/Dirt/Dirt Walk 4.wav" id="19_gd46l"]
+[ext_resource type="AudioStream" uid="uid://cecth05471cc0" path="res://Assets/Sounds/WAV Files/SFX/Footsteps/Dirt/Dirt Walk 5.wav" id="20_hsf6a"]
+[ext_resource type="AudioStream" uid="uid://dd2n16phcpe5b" path="res://Assets/Sounds/WAV Files/SFX/Footsteps/Dirt/Dirt Jump.wav" id="21_pj2c2"]
+[ext_resource type="AudioStream" uid="uid://da4hbqdtw8ffp" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Parry 1.wav" id="22_jh5lj"]
+[ext_resource type="AudioStream" uid="uid://db35rgl2ikpag" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Parry 2.wav" id="23_28o4d"]
+[ext_resource type="AudioStream" uid="uid://qk4xbgutjmta" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Parry 3.wav" id="24_qi1jx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f2jlb"]
 atlas = ExtResource("2_2hbv4")
@@ -602,6 +614,29 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_418q3"]
 size = Vector2(94, 106)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_eooue"]
+resource_local_to_scene = true
+streams_count = 3
+stream_0/stream = ExtResource("13_esv4c")
+stream_1/stream = ExtResource("13_bmyrb")
+stream_2/stream = ExtResource("15_idmwb")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u62vk"]
+resource_local_to_scene = true
+streams_count = 5
+stream_0/stream = ExtResource("16_t6bos")
+stream_1/stream = ExtResource("17_46wwg")
+stream_2/stream = ExtResource("18_k70iq")
+stream_3/stream = ExtResource("19_gd46l")
+stream_4/stream = ExtResource("20_hsf6a")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k6okn"]
+resource_local_to_scene = true
+streams_count = 3
+stream_0/stream = ExtResource("22_jh5lj")
+stream_1/stream = ExtResource("23_28o4d")
+stream_2/stream = ExtResource("24_qi1jx")
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
 script = ExtResource("1_l3am4")
@@ -618,7 +653,7 @@ position_smoothing_enabled = true
 position = Vector2(-4, -105)
 scale = Vector2(3.16875, 3.16875)
 sprite_frames = SubResource("SpriteFrames_xa5u0")
-animation = &"attack3"
+animation = &"hurt"
 
 [node name="DashCooldown" type="Timer" parent="."]
 wait_time = 3.0
@@ -636,6 +671,19 @@ shape = SubResource("RectangleShape2D_418q3")
 
 [node name="Dying" type="Timer" parent="."]
 one_shot = true
+
+[node name="Attack_sound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_eooue")
+volume_db = -4.701
+
+[node name="Run_sound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_u62vk")
+
+[node name="Jump_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_pj2c2")
+
+[node name="block_sound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_k6okn")
 
 [connection signal="attack" from="." to="." method="_on_attack"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_DashCooldown_timeout"]

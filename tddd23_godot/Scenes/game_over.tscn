@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://brhhd5f50uvax"]
+
+[ext_resource type="Texture2D" uid="uid://cyfkhn7ce5hy4" path="res://Assets/steamuserimages-a.akamaihd1.jpg" id="1_4k2g7"]
+[ext_resource type="Script" path="res://Scripts/game_over.gd" id="1_anjds"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ak3xe"]
+font_size = 50
+font_color = Color(0.0475577, 0.0475576, 0.0475576, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_itc2o"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_anjds")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(964.117, 539)
+scale = Vector2(3.02235, 3.02235)
+texture = ExtResource("1_4k2g7")
+
+[node name="SavedAndWin" type="Label" parent="."]
+visible = false
+offset_left = 346.0
+offset_top = 404.0
+offset_right = 1669.0
+offset_bottom = 801.0
+text = "You saved your friend in time 
+and protected the village"
+label_settings = SubResource("LabelSettings_ak3xe")
+horizontal_alignment = 1
+
+[node name="SavedAndLose" type="Label" parent="."]
+visible = false
+offset_left = 346.0
+offset_top = 404.0
+offset_right = 1669.0
+offset_bottom = 801.0
+text = "You saved your friend in time but 
+the village fell to the 
+remaining soldiers"
+label_settings = SubResource("LabelSettings_ak3xe")
+horizontal_alignment = 1
+
+[node name="Lose" type="Label" parent="."]
+visible = false
+offset_left = 346.0
+offset_top = 404.0
+offset_right = 1669.0
+offset_bottom = 801.0
+text = "You couldn't save your friend 
+in time"
+label_settings = SubResource("LabelSettings_ak3xe")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 927.0
+offset_top = 642.0
+offset_right = 1076.0
+offset_bottom = 694.0
+text = "Play again?"
+
+[node name="Info" type="Label" parent="."]
+offset_left = 849.0
+offset_top = 773.0
+offset_right = 1173.0
+offset_bottom = 842.0
+label_settings = SubResource("LabelSettings_itc2o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

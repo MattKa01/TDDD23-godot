@@ -42,6 +42,8 @@ func _physics_process(delta: float) -> void:
 				position += (player.position - position)/SPEED
 				if not (_animated_sprite.animation == "attack1" and _animated_sprite.is_playing()):
 					_animated_sprite.play("walk")
+					if not $Run_Sound.playing:
+						$Run_Sound.play()
 		else:
 			if not (_animated_sprite.animation == "attack1" and _animated_sprite.is_playing()):
 				_animated_sprite.play("idle")
@@ -66,7 +68,6 @@ func attack_player():
 	
 func take_damage(damage):
 	health = health - damage
-	_animated_sprite.play("hit")
 	if health <= 0:
 		_animated_sprite.play("death")
 		alive = false
@@ -90,7 +91,10 @@ func _on_attack_delay_timeout() -> void:
 	if alive:
 		_animated_sprite.play("attack1")
 		if player_attackable:
+			$Attack_hit_sound.play()
 			enemy_attack.emit(100)
+		else:
+			$Attack_miss_sound.play()
 		attack_duration.start(1)
 
 

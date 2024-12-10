@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://f0smpcbkhmhc"]
+[gd_scene load_steps=89 format=3 uid="uid://f0smpcbkhmhc"]
 
 [ext_resource type="Script" path="res://Scripts/skeleton_enemy.gd" id="1_hy0jy"]
 [ext_resource type="Texture2D" uid="uid://cyxaw0hxai8ec" path="res://Assets/Characters/Samurai #2 2D Pixel Art/Sprites/ATTACK1.png" id="2_pun6a"]
@@ -10,6 +10,16 @@
 [ext_resource type="Texture2D" uid="uid://cmkpk0djj0h23" path="res://Assets/Characters/Samurai #2 2D Pixel Art/Sprites/DEATH.png" id="7_d55uu"]
 [ext_resource type="Texture2D" uid="uid://b6sq5bb3yr5ph" path="res://Assets/Characters/Samurai #2 2D Pixel Art/Sprites/IDLE.png" id="7_iywmv"]
 [ext_resource type="Texture2D" uid="uid://doxc0g5frvev1" path="res://Assets/Characters/Samurai #2 2D Pixel Art/Sprites/RUN.png" id="8_lap0d"]
+[ext_resource type="AudioStream" uid="uid://iqn3srrjtg1i" path="res://Assets/Sounds/WAV Files/SFX/Footsteps/Dirt/Dirt Run 1.wav" id="11_sxgaw"]
+[ext_resource type="AudioStream" uid="uid://b5nva6d7mbi2g" path="res://Assets/Sounds/WAV Files/SFX/Footsteps/Dirt/Dirt Run 2.wav" id="12_6pp2f"]
+[ext_resource type="AudioStream" uid="uid://mcybbs1ujq4a" path="res://Assets/Sounds/WAV Files/SFX/Footsteps/Dirt/Dirt Run 3.wav" id="13_kmdxs"]
+[ext_resource type="AudioStream" uid="uid://dqdyinmshhwtk" path="res://Assets/Sounds/WAV Files/SFX/Footsteps/Dirt/Dirt Run 4.wav" id="14_27gwa"]
+[ext_resource type="AudioStream" uid="uid://dlb0wf1b3x6wq" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Impact Hit 1.wav" id="15_xtyu4"]
+[ext_resource type="AudioStream" uid="uid://b2f1wppweh06x" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Impact Hit 2.wav" id="16_hne72"]
+[ext_resource type="AudioStream" uid="uid://be3gavom4yinp" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Impact Hit 3.wav" id="17_xc4rh"]
+[ext_resource type="AudioStream" uid="uid://fbq5jxc4lo14" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Attack 1.wav" id="18_av7ex"]
+[ext_resource type="AudioStream" uid="uid://cbjhq1anp8tip" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Attack 2.wav" id="19_qf1gp"]
+[ext_resource type="AudioStream" uid="uid://w6ctjlsucfbl" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Attack 3.wav" id="20_ld1t8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dtcsa"]
 atlas = ExtResource("2_pun6a")
@@ -202,10 +212,6 @@ region = Rect2(800, 0, 100, 44)
 [sub_resource type="AtlasTexture" id="AtlasTexture_gkyh4"]
 atlas = ExtResource("7_d55uu")
 region = Rect2(900, 0, 100, 44)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0v6ux"]
-atlas = ExtResource("6_vxjj4")
-region = Rect2(0, 0, 100, 44)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ltbbw"]
 atlas = ExtResource("6_vxjj4")
@@ -446,9 +452,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0v6ux")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_ltbbw")
 }, {
 "duration": 1.0,
@@ -510,6 +513,28 @@ size = Vector2(155, 53)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_821dp"]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4skx2"]
+resource_local_to_scene = true
+streams_count = 4
+stream_0/stream = ExtResource("11_sxgaw")
+stream_1/stream = ExtResource("12_6pp2f")
+stream_2/stream = ExtResource("13_kmdxs")
+stream_3/stream = ExtResource("14_27gwa")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_f6uee"]
+resource_local_to_scene = true
+streams_count = 3
+stream_0/stream = ExtResource("15_xtyu4")
+stream_1/stream = ExtResource("16_hne72")
+stream_2/stream = ExtResource("17_xc4rh")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rawp2"]
+resource_local_to_scene = true
+streams_count = 3
+stream_0/stream = ExtResource("18_av7ex")
+stream_1/stream = ExtResource("19_qf1gp")
+stream_2/stream = ExtResource("20_ld1t8")
+
 [node name="Skeleton_enemy" type="CharacterBody2D"]
 collision_layer = 5
 collision_mask = 5
@@ -518,9 +543,7 @@ script = ExtResource("1_hy0jy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -22)
 sprite_frames = SubResource("SpriteFrames_bjwdi")
-animation = &"attack1"
-frame = 4
-frame_progress = 1.0
+animation = &"hurt"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(4, 0)
@@ -552,6 +575,15 @@ one_shot = true
 
 [node name="attack_duration" type="Timer" parent="."]
 one_shot = true
+
+[node name="Run_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_4skx2")
+
+[node name="Attack_hit_sound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_f6uee")
+
+[node name="Attack_miss_sound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_rawp2")
 
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]

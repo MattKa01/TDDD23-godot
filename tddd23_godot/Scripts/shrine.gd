@@ -24,6 +24,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and player_in and not used:
 		choices = show_items()
+		$Open.play()
 		$"1".visible = true
 		$"2".visible = true
 	
@@ -35,6 +36,7 @@ func _process(delta: float) -> void:
 			disabled = true
 			$"1".visible = false
 			$"2".visible = false
+			$Close.play()
 	
 		elif Input.is_action_just_pressed("choose_item_2") and player_in: #and used: #debug remove used
 			choose_item.emit(choices[1])
@@ -43,7 +45,7 @@ func _process(delta: float) -> void:
 			disabled = true
 			$"1".visible = false
 			$"2".visible = false
-
+			$Close.play()
 
 func show_items():
 	#debug below

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d18hcuu6aal8y"]
+[gd_scene load_steps=17 format=3 uid="uid://d18hcuu6aal8y"]
 
 [ext_resource type="Script" path="res://Scripts/shrine.gd" id="1_hmd5f"]
 [ext_resource type="Texture2D" uid="uid://d2klf26oxuvj2" path="res://Assets/Maps/Autumn Forest 2D Pixel Art/Props/well.png" id="2_a7ft8"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://dj004i78xps3u" path="res://Assets/items/PNG/Transperent/Icon17.png" id="5_8si4t"]
 [ext_resource type="Texture2D" uid="uid://n8eklt8s2dnj" path="res://Assets/items/PNG/Transperent/Icon38.png" id="6_pj7v7"]
 [ext_resource type="Texture2D" uid="uid://c22pkdifx5tgl" path="res://Assets/items/PNG/Transperent/Icon16.png" id="7_x8qev"]
+[ext_resource type="AudioStream" uid="uid://bvptx5b6nwhw5" path="res://Assets/Sounds/WAV Files/SFX/Doors Gates and Chests/Chest Open 1.wav" id="8_owtvw"]
+[ext_resource type="AudioStream" uid="uid://cws34jhi1yada" path="res://Assets/Sounds/WAV Files/SFX/Doors Gates and Chests/Chest Open 2.wav" id="9_i4mf5"]
+[ext_resource type="AudioStream" uid="uid://bvs3kaixiuygx" path="res://Assets/Sounds/WAV Files/SFX/Doors Gates and Chests/Chest Close 1.wav" id="10_bnl14"]
+[ext_resource type="AudioStream" uid="uid://cdtsajr5u4353" path="res://Assets/Sounds/WAV Files/SFX/Doors Gates and Chests/Chest Close 2.wav" id="11_a0xgs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18eiw"]
 size = Vector2(47, 35)
@@ -16,6 +20,18 @@ font_size = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_tmr0x"]
 font_size = 10
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nurjn"]
+resource_local_to_scene = true
+streams_count = 2
+stream_0/stream = ExtResource("8_owtvw")
+stream_1/stream = ExtResource("9_i4mf5")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0305s"]
+resource_local_to_scene = true
+streams_count = 2
+stream_0/stream = ExtResource("10_bnl14")
+stream_1/stream = ExtResource("11_a0xgs")
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_hmd5f")
@@ -131,6 +147,12 @@ offset_top = -80.0
 offset_right = 79.0
 offset_bottom = -57.0
 text = "2."
+
+[node name="Open" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_nurjn")
+
+[node name="Close" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_0305s")
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]

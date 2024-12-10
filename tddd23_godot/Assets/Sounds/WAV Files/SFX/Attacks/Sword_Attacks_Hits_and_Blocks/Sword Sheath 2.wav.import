@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d2v06u8ry7oh8"
+path="res://.godot/imported/Sword Sheath 2.wav-58e2fbb37a7a48898486578ff5309333.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Sheath 2.wav"
+dest_files=["res://.godot/imported/Sword Sheath 2.wav-58e2fbb37a7a48898486578ff5309333.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

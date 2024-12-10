@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d2n1ckah78wmo"
+path="res://.godot/imported/Bow Impact Hit 3.wav-dc3b7417cc8f08ec7e1b6a68caec691b.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/WAV Files/SFX/Attacks/Bow Attacks Hits and Blocks/Bow Impact Hit 3.wav"
+dest_files=["res://.godot/imported/Bow Impact Hit 3.wav-dc3b7417cc8f08ec7e1b6a68caec691b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

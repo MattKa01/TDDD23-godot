@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://boquyeq0wfpba"
+path="res://.godot/imported/Cave Rain.wav-fdb3eaaa14673b442ff5f40cd954bfed.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/WAV Files/BGS Loops/Cave/Cave Rain.wav"
+dest_files=["res://.godot/imported/Cave Rain.wav-fdb3eaaa14673b442ff5f40cd954bfed.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

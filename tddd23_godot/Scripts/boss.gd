@@ -53,6 +53,8 @@ func _physics_process(delta: float) -> void:
 						_animated_sprite.play("run flame")
 					else:
 						_animated_sprite.play("run")
+					if not $Run_sound.playing:
+						$Run_sound.play()
 		else:
 			if not (_animated_sprite.animation == "attack1" and _animated_sprite.is_playing()):
 				if flame_phase:
@@ -87,6 +89,7 @@ func take_damage(damage):
 	elif health <= 400 and not flame_phase:
 		flame_phase = true
 		_animated_sprite.play("level up")
+		$Level_up.play()
 		not_leveling = false
 		leveling_duration.start(3)
 
@@ -103,13 +106,17 @@ func _on_attack_delay_timeout() -> void:
 	if alive and not_leveling:
 		if flame_phase:
 			_animated_sprite.play(flame_attacks[randi_range(0,3)])
+			$Fire_attack.play()
 			if player_attackable:
 				boss_attack.emit(200)
 			attack_duration.start(0.6)
 		else:
 			_animated_sprite.play("attack" + str(randi_range(1,2)))
 			if player_attackable:
+				$Normal_attack_hit.play()
 				boss_attack.emit(100)
+			else:
+				$Normal_attack_miss.play()
 			attack_duration.start(1)
 	print(player_attackable)
 

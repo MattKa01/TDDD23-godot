@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="TDDD23_godot"
-run/main_scene="res://Scenes/Base_level.tscn"
+run/main_scene="res://Scenes/Start.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 PlayerData="*res://Scripts/player_data.gd"
+WinCondition="*res://Scripts/win_condition.gd"
 
 [display]
 

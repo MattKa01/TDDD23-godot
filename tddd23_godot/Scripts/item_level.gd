@@ -5,11 +5,17 @@ var shrine
 var portal
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if PlayerData.tutorial:
+		$Label.visible = true
+	else:
+		$Label.visible = false
+		
 	player = $Player
 	shrine = $shrine
 	portal = $Portal
 	shrine.choose_item.connect(_handle_choose_item)
 	portal.play("default")
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -30,4 +36,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		player.dcd,
 		player.max_health
 	)
+	PlayerData.set_tutorial(false)
 	get_tree().change_scene_to_file("res://Scenes/Base_level.tscn")

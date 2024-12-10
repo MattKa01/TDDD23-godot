@@ -1,4 +1,4 @@
-[gd_scene load_steps=140 format=3 uid="uid://cvajcrkuj6neu"]
+[gd_scene load_steps=158 format=3 uid="uid://cvajcrkuj6neu"]
 
 [ext_resource type="Texture2D" uid="uid://daijhiwh61vux" path="res://Assets/Characters/Demon Samurai 2D Pixel Art/Sprites/ATTACK 1.png" id="1_04yb0"]
 [ext_resource type="Script" path="res://Scripts/boss.gd" id="1_sy8jb"]
@@ -13,6 +13,20 @@
 [ext_resource type="Texture2D" uid="uid://d31idtibr5nfj" path="res://Assets/Characters/Demon Samurai 2D Pixel Art/Sprites/SHOUT.png" id="10_dwujs"]
 [ext_resource type="Texture2D" uid="uid://cs45fjihqg14r" path="res://Assets/Characters/Demon Samurai 2D Pixel Art/Sprites/RUN.png" id="11_sohti"]
 [ext_resource type="Texture2D" uid="uid://dei40hlppfrqs" path="res://Assets/Characters/Demon Samurai 2D Pixel Art/Sprites/RUN (FLAMING SWORD).png" id="12_lgrnk"]
+[ext_resource type="AudioStream" uid="uid://d2pfqvfg01h7k" path="res://Assets/Sounds/WAV Files/SFX/Spells/Fireball 1.wav" id="14_i6xki"]
+[ext_resource type="AudioStream" uid="uid://ma7twkns7ecd" path="res://Assets/Sounds/WAV Files/SFX/Spells/Fireball 2.wav" id="15_3iytr"]
+[ext_resource type="AudioStream" uid="uid://cjofci8xkv0at" path="res://Assets/Sounds/WAV Files/SFX/Spells/Fireball 3.wav" id="16_s60j6"]
+[ext_resource type="AudioStream" uid="uid://fbq5jxc4lo14" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Attack 1.wav" id="17_uutf8"]
+[ext_resource type="AudioStream" uid="uid://cbjhq1anp8tip" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Attack 2.wav" id="18_axrun"]
+[ext_resource type="AudioStream" uid="uid://w6ctjlsucfbl" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Attack 3.wav" id="19_kn0ou"]
+[ext_resource type="AudioStream" uid="uid://dlb0wf1b3x6wq" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Impact Hit 1.wav" id="20_gn340"]
+[ext_resource type="AudioStream" uid="uid://b2f1wppweh06x" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Impact Hit 2.wav" id="21_brxds"]
+[ext_resource type="AudioStream" uid="uid://be3gavom4yinp" path="res://Assets/Sounds/WAV Files/SFX/Attacks/Sword_Attacks_Hits_and_Blocks/Sword Impact Hit 3.wav" id="22_1nmrp"]
+[ext_resource type="AudioStream" uid="uid://bcsiybe0tkofe" path="res://Assets/Sounds/WAV Files/SFX/Spells/Firespray 1.wav" id="23_dwygs"]
+[ext_resource type="AudioStream" uid="uid://b1nbxt0ess64q" path="res://Assets/Sounds/WAV Files/SFX/Footsteps/Dirt/Dirt Chain Run 1.wav" id="24_m68e1"]
+[ext_resource type="AudioStream" uid="uid://dpmcxg2xka7ax" path="res://Assets/Sounds/WAV Files/SFX/Footsteps/Dirt/Dirt Chain Run 2.wav" id="25_ljnuo"]
+[ext_resource type="AudioStream" uid="uid://b036etpqy5tlh" path="res://Assets/Sounds/WAV Files/SFX/Footsteps/Dirt/Dirt Chain Run 3.wav" id="26_jfb3x"]
+[ext_resource type="AudioStream" uid="uid://cvd514upwemyf" path="res://Assets/Sounds/WAV Files/SFX/Footsteps/Dirt/Dirt Chain Run 4.wav" id="27_sa75v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pmsh1"]
 size = Vector2(20, 38)
@@ -976,7 +990,36 @@ animations = [{
 size = Vector2(21, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_elxtc"]
-size = Vector2(604, 143.5)
+size = Vector2(413, 143.5)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3q4dm"]
+resource_local_to_scene = true
+streams_count = 3
+stream_0/stream = ExtResource("14_i6xki")
+stream_1/stream = ExtResource("15_3iytr")
+stream_2/stream = ExtResource("16_s60j6")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0tjr4"]
+resource_local_to_scene = true
+streams_count = 3
+stream_0/stream = ExtResource("17_uutf8")
+stream_1/stream = ExtResource("18_axrun")
+stream_2/stream = ExtResource("19_kn0ou")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x5bj2"]
+resource_local_to_scene = true
+streams_count = 3
+stream_0/stream = ExtResource("20_gn340")
+stream_1/stream = ExtResource("21_brxds")
+stream_2/stream = ExtResource("22_1nmrp")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2nxlx"]
+resource_local_to_scene = true
+streams_count = 4
+stream_0/stream = ExtResource("24_m68e1")
+stream_1/stream = ExtResource("25_ljnuo")
+stream_2/stream = ExtResource("26_jfb3x")
+stream_3/stream = ExtResource("27_sa75v")
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 5
@@ -1016,12 +1059,27 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
-position = Vector2(0, -71.25)
+position = Vector2(-0.5, -71.25)
 shape = SubResource("RectangleShape2D_elxtc")
 
 [node name="Level_up_duration" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="Fire_attack" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_3q4dm")
+
+[node name="Normal_attack_miss" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_0tjr4")
+
+[node name="Normal_attack_hit" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_x5bj2")
+
+[node name="Level_up" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_dwygs")
+
+[node name="Run_sound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_2nxlx")
 
 [connection signal="body_entered" from="attack_hitbox" to="." method="_on_attack_hitbox_body_entered"]
 [connection signal="body_exited" from="attack_hitbox" to="." method="_on_attack_hitbox_body_exited"]

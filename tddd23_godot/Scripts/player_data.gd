@@ -7,6 +7,8 @@ var unlocked_additional_attack = 1
 var unlocked_block = false
 var dcd = 3
 var max_health = 100
+var deaths = 0
+var tutorial = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -16,6 +18,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func add_death():
+	deaths += 1
+
 func set_data(h, d, c, ua, ub, d_cd, mh):
 	health = h
 	damage = d
@@ -24,3 +29,16 @@ func set_data(h, d, c, ua, ub, d_cd, mh):
 	unlocked_block = ub
 	dcd = d_cd
 	max_health = mh
+
+func reset_data():
+	health = 100
+	damage = 50
+	collected_items = []
+	unlocked_additional_attack = 1
+	unlocked_block = false
+	dcd = 3
+	max_health = 100
+	deaths = 0
+
+func set_tutorial(s):
+	tutorial = s

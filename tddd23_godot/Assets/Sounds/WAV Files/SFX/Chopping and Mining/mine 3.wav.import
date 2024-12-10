@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dwt13sa738use"
+path="res://.godot/imported/mine 3.wav-aa48a985a2103c9e762ba43e26bd033b.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/WAV Files/SFX/Chopping and Mining/mine 3.wav"
+dest_files=["res://.godot/imported/mine 3.wav-aa48a985a2103c9e762ba43e26bd033b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
